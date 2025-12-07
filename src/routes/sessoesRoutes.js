@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const SessaoController = require('../controllers/SessaoController');
 
-router.get('/', SessaoController.index);     
+router.get('/', SessaoController.search);     
 router.post('/', SessaoController.store);    
 router.put('/:id', SessaoController.update); 
 router.delete('/:id', SessaoController.delete); 
