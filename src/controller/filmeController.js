@@ -18,7 +18,15 @@ module.exports = {
         }
     },
 
-   
+    async store(req, res) {
+        try {
+            const filme = await Filme.create(req.body);
+            res.status(201).json(filme);
+        } catch (err) {
+            res.status(400).json({ error: err.message });
+        }
+    },
+
     async show(req, res) {
         try {
             if (!mongoose.isValidObjectId(req.params.id)) {
@@ -36,7 +44,26 @@ module.exports = {
         }
     },
 
-   
+    async update(req, res) {
+        try {
+            if (!mongoose.isValidObjectId(req.params.id)) {
+                return res.status(400).json({ error: 'ID inválido' });
+            }
+
+            const filme = await Filme.findByIdAndUpdate(
+                req.params.id, 
+                req.body, 
+                { new: true, runValidators: true }
+            );
+
+            if (!filme) {
+                return res.status(404).json({ error: 'Filme não encontrado' });
+            }
+            res.json(filme);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    },
 
     async delete(req, res) {
         try {
