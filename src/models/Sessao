@@ -16,6 +16,6 @@ const SessaoSchema = new mongoose.Schema({
     data: {type: String, required: true}, 
     horario: {type:String, required: true},
     preco: {type: Number, required: true}
-}, {collection: 'Sessoes'});
+}, {collection: 'Sessao'});
 
 module.exports = mongoose.model('Sessao', SessaoSchema);
