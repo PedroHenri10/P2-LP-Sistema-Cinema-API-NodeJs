@@ -5,6 +5,6 @@ const SessaoController = require('../controllers/SessaoController');
 router.get('/', SessaoController.index);     
 router.post('/', SessaoController.store);    
 router.put('/:id', SessaoController.update); 
-router.delete('/:id', SessaoController.destroy); 
+router.delete('/:id', SessaoController.delete); 
 
 module.exports = router;
