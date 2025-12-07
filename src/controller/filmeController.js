@@ -38,5 +38,20 @@ module.exports = {
 
    
 
-    
+    async delete(req, res) {
+        try {
+            if (!mongoose.isValidObjectId(req.params.id)) {
+                return res.status(400).json({ error: 'ID inválido' });
+            }
+
+            const filme = await Filme.findByIdAndDelete(req.params.id);
+
+            if (!filme) {
+                return res.status(404).json({ error: 'Filme não encontrado' });
+            }
+            res.json({ ok: true });
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    }
 };
