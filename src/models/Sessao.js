@@ -14,6 +14,6 @@ const SessaoSchema = new mongoose.Schema({
     data: { type: String, required: true },
     horario: { type: String, required: true },
     preco: { type: Number, required: true }
-}, { collection: 'Sessao' });
+}, { collection: 'sessao' });
  
 export default mongoose.model('Sessao', SessaoSchema);

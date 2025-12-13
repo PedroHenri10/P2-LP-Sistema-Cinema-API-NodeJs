@@ -10,6 +10,6 @@ const VendaSchema = new mongoose.Schema({
     assentos: [{ type: Number }],
     valorTotal: { type: Number, required: true },
     dataCompra: { type: Date, default: Date.now }
-}, { collection: 'Venda' });
+}, { collection: 'venda' });
  
 export default mongoose.model('Venda', VendaSchema);

@@ -6,6 +6,6 @@ const FilmeSchema = new mongoose.Schema({
     duracao: { type: Number, required: true },
     classificacao: { type: String, required: true },
     sinopse: { type: String }
-}, { collection: 'Filme' });
+}, { collection: 'filmes' });
  
 export default mongoose.model('Filme', FilmeSchema);
