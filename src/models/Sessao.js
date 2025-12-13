@@ -1,21 +1,19 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
+ 
 const SessaoSchema = new mongoose.Schema({
     filme: {
-        type:
-        mongoose.Schema.Types.ObjectId,
-        ref: 'Filme',
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Filme', 
         required: true
     },
-    sala:{
-        type:
-        mongoose.Schema.Types.ObjectId,
+    sala: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Sala',
         required: true
     },
-    data: {type: String, required: true}, 
-    horario: {type:String, required: true},
-    preco: {type: Number, required: true}
-}, {collection: 'Sessao'});
-
-module.exports = mongoose.model('Sessao', SessaoSchema);
+    data: { type: String, required: true },
+    horario: { type: String, required: true },
+    preco: { type: Number, required: true }
+}, { collection: 'Sessao' });
+ 
+export default mongoose.model('Sessao', SessaoSchema);

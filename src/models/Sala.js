@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
+ 
 const SalaSchema = new mongoose.Schema({
-    nome: { type: String, required: true }, 
-    capacidade: { type: Number, required: true }, 
-    ativa: { type: Boolean, default: true } 
-}, {colletion: 'Sala'}
-);
-
-module.exports = mongoose.model('Sala', SalaSchema);
+    nome: { type: String, required: true },
+    capacidade: { type: Number, required: true },
+    ativa: { type: Boolean, default: true }
+}, { collection: 'Sala' }); 
+ 
+export default mongoose.model('Sala', SalaSchema);
