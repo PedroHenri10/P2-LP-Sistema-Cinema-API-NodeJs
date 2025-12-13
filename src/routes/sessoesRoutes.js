@@ -1,10 +1,11 @@
-const express = require('express');
+import express from 'express';
+import SessaoController from '../controller/SessaoController.js';
+ 
 const router = express.Router();
-const SessaoController = require('../controllers/SessaoController');
-
-router.get('/', SessaoController.search);     
-router.post('/', SessaoController.store);    
-router.put('/:id', SessaoController.update); 
-router.delete('/:id', SessaoController.delete); 
-
-module.exports = router;
+ 
+router.get('/', SessaoController.search);
+router.post('/', SessaoController.store);
+router.put('/:id', SessaoController.update);
+router.delete('/:id', SessaoController.destroy);
+ 
+export default router;

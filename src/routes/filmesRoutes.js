@@ -1,11 +1,12 @@
-const express = require('express');
+import express from 'express';
+import FilmeController from '../controller/FilmeController.js'; 
+ 
 const router = express.Router();
-const FilmeController = require('../controllers/FilmeController');
-
-router.get('/', FilmeController.search);          
-router.post('/', FilmeController.store);         
-router.get('/:id', FilmeController.show);        
-router.put('/:id', FilmeController.update);      
-router.delete('/:id', FilmeController.delete);  
-
-module.exports = router;
+ 
+router.get('/', FilmeController.index);
+router.post('/', FilmeController.store);
+router.get('/:id', FilmeController.show);
+router.put('/:id', FilmeController.update);
+router.delete('/:id', FilmeController.destroy);
+ 
+export default router;
