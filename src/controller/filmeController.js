@@ -1,23 +1,24 @@
-const mongoose = require('mongoose');
-const Filme = require('../models/Filme');
-
-module.exports = {
-    async search(req, res) {
+import mongoose from 'mongoose';
+import Filme from '../models/Filme.js'; 
+ 
+export default {
+    async index(req, res) {
         try {
             const { categoria, classificacao, busca } = req.query;
             const filtro = {};
-
+ 
             if (categoria) filtro.genero = categoria;
             if (classificacao) filtro.classificacao = classificacao;
             if (busca) filtro.titulo = { $regex: busca, $options: 'i' };
-
+ 
             const filmes = await Filme.find(filtro);
             res.json(filmes);
         } catch (err) {
+            console.error('Erro ao buscar filmes:', err); 
             res.status(500).json({ error: err.message });
         }
     },
-
+ 
     async store(req, res) {
         try {
             const filme = await Filme.create(req.body);
@@ -26,56 +27,32 @@ module.exports = {
             res.status(400).json({ error: err.message });
         }
     },
-
+ 
     async show(req, res) {
         try {
-            if (!mongoose.isValidObjectId(req.params.id)) {
-                return res.status(400).json({ error: 'ID inválido' });
-            }
-
-            const filme = await Filme.findById(req.params.id);
-            
-            if (!filme) {
-                return res.status(404).json({ error: 'Filme não encontrado' });
-            }
+if (!mongoose.isValidObjectId(req.params.id)) return res.status(400).json({ error: 'ID inválido' });
+const filme = await Filme.findById(req.params.id);
+            if (!filme) return res.status(404).json({ error: 'Filme não encontrado' });
             res.json(filme);
         } catch (err) {
             res.status(500).json({ error: err.message });
         }
     },
-
+ 
     async update(req, res) {
         try {
-            if (!mongoose.isValidObjectId(req.params.id)) {
-                return res.status(400).json({ error: 'ID inválido' });
-            }
-
-            const filme = await Filme.findByIdAndUpdate(
-                req.params.id, 
-                req.body, 
-                { new: true, runValidators: true }
-            );
-
-            if (!filme) {
-                return res.status(404).json({ error: 'Filme não encontrado' });
-            }
+if (!mongoose.isValidObjectId(req.params.id)) return res.status(400).json({ error: 'ID inválido' });
+const filme = await Filme.findByIdAndUpdate(req.params.id, req.body, { new: true });
             res.json(filme);
         } catch (err) {
             res.status(500).json({ error: err.message });
         }
     },
-
-    async delete(req, res) {
+ 
+    async destroy(req, res) {
         try {
-            if (!mongoose.isValidObjectId(req.params.id)) {
-                return res.status(400).json({ error: 'ID inválido' });
-            }
-
-            const filme = await Filme.findByIdAndDelete(req.params.id);
-
-            if (!filme) {
-                return res.status(404).json({ error: 'Filme não encontrado' });
-            }
+if (!mongoose.isValidObjectId(req.params.id)) return res.status(400).json({ error: 'ID inválido' });
+await Filme.findByIdAndDelete(req.params.id);
             res.json({ ok: true });
         } catch (err) {
             res.status(500).json({ error: err.message });
