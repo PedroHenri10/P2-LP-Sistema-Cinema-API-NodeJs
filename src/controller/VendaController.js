@@ -5,7 +5,9 @@ import Sessao from '../models/Sessao.js';
 export default {
     async search(req, res) {
         try {
-            const vendas = await Venda.find().populate('sessao');
+            const vendas = await Venda.find().populate({path: 'sessao',
+                populate: {path: 'filme sala'}
+        });
             res.json(vendas);
         } catch (err) {
             res.status(500).json({ error: err.message });
