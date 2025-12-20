@@ -3,7 +3,7 @@ import SessaoController from '../controller/SessaoController.js';
  
 const router = express.Router();
  
-router.get('/', SessaoController.search);
+router.get('/search', SessaoController.search);
 router.post('/', SessaoController.store);
 router.put('/:id', SessaoController.update);
 router.delete('/:id', SessaoController.destroy);
