@@ -18,6 +18,15 @@ export default {
             res.status(500).json({ error: err.message });
         }
     },
+
+    async listarGeneros(req, res) {
+        try {
+            const generos = await Filme.distinct('genero');
+            res.json(generos);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    },
  
     async store(req, res) {
         try {
