@@ -32,7 +32,7 @@ Este é o **Backend** do sistema de gerenciamento de cinema. Trata-se de uma API
 3.  **Configuração do Ambiente:**
     Crie um arquivo `.env` na raiz do projeto e configure a conexão com o banco de dados (exemplo):
     ```env
-    MONGO_URI=mongodb+srv://user:senha@cluster0.exemplo.mongodb.net/cinema?retryWrites=true&w=majority
+    MONGO_URI=mongodb+srv://<username>:<password>@cluster_URL.exemplo.mongodb.net/cinema?retryWrites=true&w=majority
     PORT=3000
     ```
 
